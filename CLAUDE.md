@@ -1,7 +1,8 @@
 # Paragon PR7-U: notes for Claude
 
 **Paragon PR7-U** is the owner's family installer: Python (**PySide6**) that installs, updates and removes the Paragon
-PR7 family (PR7-Z, W, L, F, E, R, P, M, Q `ARYEZ/Paragon-PR7-*`), each from its own latest GitHub release, in the
+PR7 family (PR7-Z, W, L, F, E, R, P, M, Q, DU `ARYEZ/Paragon-PR7-*`; DU has two letters: `App.letter` is
+  whatever follows "PR7-"), each from its own latest GitHub release, in the
 family look. Windows 10/11 x64 is the target; it runs on Linux for tests. The owner writes Python; explain the why.
 
 ## How it's built

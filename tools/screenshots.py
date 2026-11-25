@@ -25,13 +25,13 @@ out.mkdir(parents=True, exist_ok=True)
 app = QApplication([])
 theme.load_fonts()
 
-LATEST = dict(zip("ZWLFERPMQ", ["0.4.0", "0.3.0", "0.7.0", "0.5.0", "1.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0"]))
-SIZES = dict(zip("ZWLFERPMQ", [36.4, 27.4, 36.9, 42.1, 42.4, 38.0, 37.2, 61.5, 35.4]))
+LATEST = dict(zip(["Z", "W", "L", "F", "E", "R", "P", "M", "Q", "DU"], ["0.4.0", "0.3.0", "0.7.0", "0.5.0", "1.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0"]))
+SIZES = dict(zip(["Z", "W", "L", "F", "E", "R", "P", "M", "Q", "DU"], [36.4, 27.4, 36.9, 42.1, 42.4, 38.0, 37.2, 61.5, 35.4, 34.8]))
 registry = {}
 
 
 def fetch(url):
-    k = url.split("/repos/ARYEZ/Paragon-PR7-")[1][0]
+    k = url.split("/repos/ARYEZ/Paragon-PR7-")[1].split("/")[0]
     v = LATEST[k]
     return json.dumps({"tag_name": f"v{v}", "html_url": "", "body": "",
                        "assets": [{"name": f"PR7-{k}-Setup-{v}.exe", "size": int(SIZES[k] * 1e6),
