@@ -37,5 +37,6 @@ family look. Windows 10/11 x64 is the target; it runs on Linux for tests. The ow
 
 - Tests: `python -m pytest` (offscreen) against a stand-in family (`conftest.Family`: GitHub's JSON, setups on a local
   web server, uninstall entries, installers that write them). Never the real settings, registry or network.
-- Releases: bump `__version__` in `pr7u/__init__.py`, add a `## x.y.z` section to CHANGELOG.md; Run workflow with
-  "Publish a release" (or a `v*` tag) publishes.
+- Releases: bump `__version__` in `pr7u/__init__.py` and add a `## x.y.z` section to CHANGELOG.md, then push:
+  CI publishes that version by itself once every check has passed (the "Is this version released yet?"
+  step; this session can't start workflows or push tags). Run workflow / `v*` tags still work.
