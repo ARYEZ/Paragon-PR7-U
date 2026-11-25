@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+- **PR7-SM** (system monitor, works like Process Explorer) joins the family.
+
 ## 0.5.0
 
 - **PR7-PM** (password manager, works like KeePassXC) joins the family.

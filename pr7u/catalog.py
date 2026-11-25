@@ -60,6 +60,7 @@ APPS = [
     # prompt mid-batch); PR7-IS's window then offers INSTALL THE INDEX SERVICE.
     App("IS", "File search", "Everything", ("/MERGETASKS=!service",)),
     App("PM", "Password manager", "KeePassXC"),
+    App("SM", "System monitor", "Process Explorer"),   # Replace Task Manager (admin) is unticked: no switch needed
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 
