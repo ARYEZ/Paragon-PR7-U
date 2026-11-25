@@ -55,6 +55,7 @@ APPS = [
     App("M", "Media player", "MPC-HC"),
     App("Q", "Screenshots", "Greenshot"),
     App("DU", "Disk usage", "WizTree"),          # Paragon-PR7-D was already taken: two letters
+    App("CB", "Clipboard history", "Ditto"),     # Paragon-PR7-C was too
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 

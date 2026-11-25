@@ -19,7 +19,7 @@ SHORTCUT = Path(os.environ["APPDATA"]) / "Microsoft" / "Windows" / "Start Menu" 
 UNINSTALL = r"Software\Microsoft\Windows\CurrentVersion\Uninstall\{}_is1"
 OWN_ID = "{12226380-56E6-4D77-8F5C-8052A0AE4183}"
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from pr7u import family  # noqa: E402
+from pr7u import catalog, family  # noqa: E402
 
 
 def value(path, name=""):
@@ -57,7 +57,7 @@ def installed():
         out = Path(d) / "list.json"
         code = pr7u("--list", str(out), timeout=120)
         rows = json.loads(out.read_text(encoding="utf-8")) if out.exists() else []
-        check(code == 0 and len(rows) == 9, f"--list read all nine apps' releases ({len(rows)})", p)
+        check(code == 0 and len(rows) == len(catalog.APPS), f"--list read every app's release ({len(rows)} of {len(catalog.APPS)})", p)
     released = {r["app"]: r["latest"] for r in rows if r.get("latest")}
     for r in rows:
         if not r.get("latest"):

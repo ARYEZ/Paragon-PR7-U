@@ -17,6 +17,7 @@ own latest GitHub release, in the family look. Python and PySide6.
 | PR7-M | Media player | MPC-HC |
 | PR7-Q | Screenshots | Greenshot |
 | PR7-DU | Disk usage | WizTree |
+| PR7-CB | Clipboard history | Ditto |
 
 ## How it works
 

@@ -12,8 +12,8 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools"))
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 os.environ.pop("PR7U_GITHUB_TOKEN", None)
-LETTERS = ["Z", "W", "L", "F", "E", "R", "P", "M", "Q", "DU"]
-VERSIONS = ["0.4.0", "0.3.0", "0.7.0", "0.5.0", "1.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0"]
+LETTERS = ["Z", "W", "L", "F", "E", "R", "P", "M", "Q", "DU", "CB"]
+VERSIONS = ["0.4.0", "0.3.0", "0.7.0", "0.5.0", "1.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0"]
 
 
 @pytest.fixture(scope="session")

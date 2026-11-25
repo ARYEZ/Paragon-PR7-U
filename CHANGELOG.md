@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.2.0
+## 0.3.0
 
+- **PR7-CB** (clipboard history, works like Ditto) joins the family.
 - **PR7-DU** (disk usage, works like WizTree) joins the family: Install the family offers it, and Your Paragon
   apps opens, updates and removes it like the others.
 - Check for Updates in the other family apps now offers PR7-U.
