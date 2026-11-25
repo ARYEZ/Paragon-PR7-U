@@ -76,12 +76,13 @@ def test_manage_view_open_update_uninstall(window, fam):
     w = window.widgets
     assert (w["Z"].button.text(), w["E"].button.text(), w["W"].button.text()) == ("UPDATE", "OPEN", "INSTALL")
     assert window.summary.text() == "1 update  ·  12 apps not installed"
-    assert visible(window, "go") and window.buttons["go"].text() == "UPDATE ALL"
+    assert visible(window, "go") and window.buttons["go"].text() == "UPDATE AND INSTALL ALL"
+    assert visible(window, "updates") and window.buttons["updates"].text() == "UPDATE ONLY"
     opened = []
     window.answers["launch"] = lambda name, args: opened.append(name) or True
     w["E"].button.click()
     assert opened == ["PR7-E"]
-    window._button_go()                                  # UPDATE ALL: only the installed ones that are behind
+    window._button_updates()                             # UPDATE ONLY: only the installed ones that are behind
     assert len(fam.ran) == 1 and fam.registry[family.APPS["PR7-Z"]]["DisplayVersion"] == "0.4.0"
     window._button_go()                                  # DONE
     window.answers["menu"] = True
@@ -145,3 +146,27 @@ def test_install_and_uninstall_without_a_window(fam):
     assert app.headless("uninstall", "all", fam.fetch, None, fam.runner, fam.reader, lines.append) == 0
     assert not fam.registry and "PR7-M: not installed" in lines
     assert app.headless("install", "Z,Y", say=lines.append) == 2
+
+
+def test_install_and_update_everything_from_your_apps(window, fam):
+    fam.install("PR7-Z", "0.3.0")                        # behind
+    fam.install("PR7-E", "1.1.0")                        # current
+    window.refresh()
+    assert window.buttons["go"].text() == "UPDATE AND INSTALL ALL"
+    window._button_go()
+    ran = [a[0].rsplit("\\", 1)[-1].rsplit("/", 1)[-1] for a in fam.ran]
+    assert ran[0] == "PR7-Z-Setup-0.4.0.exe"                                   # the update first
+    assert len(ran) == 13 and not any(r.startswith("PR7-E-") for r in ran)    # then every missing app; E left alone
+    w_args = next(a for a in fam.ran if "PR7-W-Setup" in a[0])
+    assert "/MERGETASKS=!replacenotepad" in w_args                              # first installs keep their switches
+    assert all(fam.registry[family.APPS[f"PR7-{k}"]]["DisplayVersion"] for k in ("Z", "W", "SM"))
+    window._button_go()                                                         # DONE
+    assert window.buttons["go"].text() == "UPDATE ALL" and not window.buttons["go"].isEnabled()
+    assert not visible(window, "updates") and window.summary.text() == "Everything is up to date"
+
+
+def test_install_all_when_nothing_needs_updating(window, fam):
+    fam.install("PR7-E", "1.1.0")
+    window.start = "done"
+    window.refresh()
+    assert window.mode == "manage" and window.buttons["go"].text() == "INSTALL ALL" and not visible(window, "updates")

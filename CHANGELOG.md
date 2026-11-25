@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0
+
+- **Install and update everything in one go.** Your Paragon apps has one button for whatever is waiting: UPDATE ALL
+  (updates only), INSTALL ALL (the apps you don't have yet) or UPDATE AND INSTALL ALL (both, updates first). When both
+  are waiting, UPDATE ONLY brings your apps up to date without adding the rest of the family. New apps install with
+  the same quiet first-install choices as on first start, so a batch never stops at a Windows permission prompt.
+
 ## 0.6.0
 
 - **PR7-SM** (system monitor, works like Process Explorer) joins the family.

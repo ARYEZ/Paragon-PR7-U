@@ -225,7 +225,7 @@ class MainWindow(QMainWindow):
         foot.addSpacing(20)
         self.buttons = {}
         for key, text in (("all", "SELECT ALL"), ("none", "NONE"), ("check", "CHECK NOW"), ("cancel", "CANCEL"),
-                          ("go", "INSTALL")):
+                          ("updates", "UPDATE ONLY"), ("go", "INSTALL")):
             b = QPushButton(text)
             if key == "go":
                 b.setProperty("kind", PRIMARY)
@@ -317,10 +317,19 @@ class MainWindow(QMainWindow):
             self.blurb.setText("Open, update or remove each app. PR7-U checks for new versions once a day.")
             b["check"].setVisible(True)
             b["go"].setVisible(True)
-            ups = [r for r in self.rows if r.state == "update"]
-            b["go"].setText("UPDATE ALL")
-            b["go"].setEnabled(bool(ups))
+            # One button for what's waiting: updates, the apps not installed yet, or both (then UPDATE ONLY too, to
+            # bring your apps up to date without adding the rest of the family).
+            ups, missing = self.waiting()
+            b["go"].setText("UPDATE AND INSTALL ALL" if ups and missing else "INSTALL ALL" if missing else "UPDATE ALL")
+            b["go"].setEnabled(bool(ups or missing))
+            b["updates"].setVisible(bool(ups and missing))
             self.summary.setText(self.manage_summary())
+
+    def waiting(self) -> tuple[list[str], list[str]]:
+        """(installed apps with a newer release, released apps not installed yet), as letters in family order."""
+        ups = [r.app.letter for r in self.rows if r.state == "update"]
+        missing = [r.app.letter for r in self.rows if r.state == "new"]
+        return ups, missing
 
     def manage_summary(self) -> str:
         ups = sum(r.state == "update" for r in self.rows)
@@ -366,10 +375,15 @@ class MainWindow(QMainWindow):
     def _button_go(self):
         if self.mode == "choose":
             self.run_job([(k, "install") for k in self.chosen()])
-        elif self.mode == "manage":
-            self.run_job([(r.app.letter, "install") for r in self.rows if r.state == "update"])
+        elif self.mode == "manage":                # updates first, then the new apps (each with its first-install switches)
+            ups, missing = self.waiting()
+            self.run_job([(k, "install") for k in ups + missing])
         else:                                  # progress finished: DONE
             self._show("manage")
+
+    def _button_updates(self):
+        """UPDATE ONLY: the installed apps that are behind, nothing new added."""
+        self.run_job([(k, "install") for k in self.waiting()[0]])
 
     def _button_cancel(self):
         self._cancel.set()
