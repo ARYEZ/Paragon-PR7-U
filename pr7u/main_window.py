@@ -279,6 +279,14 @@ class MainWindow(QMainWindow):
     # ---------------------------------------------------------------- the three views
     def _show(self, mode: str):
         self.mode = mode
+        # The old rows: taken out and deleted later, never by setWidget (that deletes them in C++ at once, while their
+        # Python wrappers live on in signal cycles; the garbage collector then crashed freeing them: a segfault on
+        # CI and here once the family had 13 apps).
+        old = self.scroll.takeWidget()
+        self.widgets = {}
+        if old is not None:
+            old.hide()
+            old.deleteLater()
         holder = QWidget(); holder.setObjectName("rows")
         v = QVBoxLayout(holder); v.setContentsMargins(0, 0, 0, 0); v.setSpacing(0)
         self.widgets = {}
