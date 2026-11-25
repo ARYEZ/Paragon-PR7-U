@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0
+
+- **PR7-AR**, the startup manager (works like Autoruns), joins the list.
+
 ## 0.10.0
 
 - **PR7-FS**, folder comparison and sync (works like FreeFileSync), joins the list.

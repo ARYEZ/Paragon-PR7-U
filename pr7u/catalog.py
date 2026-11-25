@@ -63,6 +63,7 @@ APPS = [
     App("SM", "System monitor", "Process Explorer"),   # Replace Task Manager (admin) is unticked: no switch needed
     App("HB", "Video converter", "HandBrake"),
     App("FS", "Folder sync", "FreeFileSync"),
+    App("AR", "Startup manager", "Autoruns"),
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 
