@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+- **PR7-IS** (instant file search, works like Everything) joins the family. A first install from PR7-U leaves out
+  its index service, so installing the family never stops for a Windows permission prompt; PR7-IS offers to
+  install the service itself.
+
 ## 0.3.0
 
 - **PR7-CB** (clipboard history, works like Ditto) joins the family.

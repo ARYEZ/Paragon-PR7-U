@@ -9,11 +9,11 @@ from pr7u.updates import UpdateError
 def test_the_catalog_is_the_whole_family():
     from conftest import LETTERS
     assert [a.name for a in catalog.APPS] == [f"PR7-{x}" for x in LETTERS]
-    assert len({a.appid for a in catalog.APPS}) == 11 and family.APPS["PR7-U"] not in {a.appid for a in catalog.APPS}
+    assert len({a.appid for a in catalog.APPS}) == 12 and family.APPS["PR7-U"] not in {a.appid for a in catalog.APPS}
     for a in catalog.APPS:
         assert Path(a.icon).is_file() and a.repo == f"ARYEZ/Paragon-{a.name}"
     assert [a.letter for a in catalog.pick("q, PR7-z")] == ["Z", "Q"]       # catalogue order
-    assert len(catalog.pick("all")) == 11 and [a.name for a in catalog.pick("du")] == ["PR7-DU"]
+    assert len(catalog.pick("all")) == 12 and [a.name for a in catalog.pick("du")] == ["PR7-DU"]
     with pytest.raises(ValueError):
         catalog.pick("Z,X")
 
@@ -38,7 +38,7 @@ def test_survey_states(fam):
     rows = {r.app.letter: r for r in releases.survey(fetch=fam.fetch, reader=fam.reader)}
     assert {k: r.state for k, r in rows.items()} == {"Z": "update", "W": "new", "L": "current", "F": "error",
                                                        "E": "current", "R": "new", "P": "new", "M": "new",
-                                                       "Q": "unreleased", "DU": "new", "CB": "new"}
+                                                       "Q": "unreleased", "DU": "new", "CB": "new", "IS": "new"}
     assert rows["Z"].wanted and not rows["E"].wanted and "network down" in rows["F"].error
 
 
@@ -59,6 +59,13 @@ def test_install_downloads_and_runs_the_apps_own_setup_silently(fam, tmp_path):
     releases.install(row, runner=fam.runner, reader=fam.reader)
     assert "/MERGETASKS=!replacenotepad" not in fam.ran[1]          # an update keeps the earlier choices
     assert row.installed.version == "0.3.1"
+
+
+def test_a_first_install_of_pr7_is_leaves_out_its_service(fam, tmp_path):
+    row = releases.survey([catalog.BY_LETTER["IS"]], fetch=fam.fetch, reader=fam.reader)[0]
+    releases.install(row, folder=str(tmp_path / "dl"), runner=fam.runner, reader=fam.reader)
+    assert "/MERGETASKS=!service" in fam.ran[0]                        # its UAC prompt would stop the batch
+    assert row.installed.version and row.state == "current"
 
 
 def test_failures_say_what_went_wrong(fam):

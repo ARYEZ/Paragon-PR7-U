@@ -56,6 +56,9 @@ APPS = [
     App("Q", "Screenshots", "Greenshot"),
     App("DU", "Disk usage", "WizTree"),          # Paragon-PR7-D was already taken: two letters
     App("CB", "Clipboard history", "Ditto"),     # Paragon-PR7-C was too
+    # Its index service task needs administrator permission once: a first install from PR7-U leaves it out (no UAC
+    # prompt mid-batch); PR7-IS's window then offers INSTALL THE INDEX SERVICE.
+    App("IS", "File search", "Everything", ("/MERGETASKS=!service",)),
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 
