@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0
+
+- **PR7-FS**, folder comparison and sync (works like FreeFileSync), joins the list.
+
 ## 0.9.0
 
 - **PR7-HB**, the video converter (works like HandBrake), joins the list: install, update and remove it with the rest of the family.

@@ -22,6 +22,7 @@ own latest GitHub release, in the family look. Python and PySide6.
 | PR7-PM | Password manager | KeePassXC |
 | PR7-SM | System monitor | Process Explorer |
 | PR7-HB | Video converter | HandBrake |
+| PR7-FS | Folder sync | FreeFileSync |
 
 ## How it works
 

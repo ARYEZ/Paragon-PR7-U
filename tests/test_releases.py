@@ -9,11 +9,11 @@ from pr7u.updates import UpdateError
 def test_the_catalog_is_the_whole_family():
     from conftest import LETTERS
     assert [a.name for a in catalog.APPS] == [f"PR7-{x}" for x in LETTERS]
-    assert len({a.appid for a in catalog.APPS}) == 15 and family.APPS["PR7-U"] not in {a.appid for a in catalog.APPS}
+    assert len({a.appid for a in catalog.APPS}) == 16 and family.APPS["PR7-U"] not in {a.appid for a in catalog.APPS}
     for a in catalog.APPS:
         assert Path(a.icon).is_file() and a.repo == f"ARYEZ/Paragon-{a.name}"
     assert [a.letter for a in catalog.pick("q, PR7-z")] == ["Z", "Q"]       # catalogue order
-    assert len(catalog.pick("all")) == 15 and [a.name for a in catalog.pick("du")] == ["PR7-DU"]
+    assert len(catalog.pick("all")) == 16 and [a.name for a in catalog.pick("du")] == ["PR7-DU"]
     with pytest.raises(ValueError):
         catalog.pick("Z,X")
 
@@ -38,7 +38,7 @@ def test_survey_states(fam):
     rows = {r.app.letter: r for r in releases.survey(fetch=fam.fetch, reader=fam.reader)}
     assert {k: r.state for k, r in rows.items()} == {"Z": "update", "W": "new", "L": "current", "F": "error",
                                                        "E": "current", "R": "new", "P": "new", "M": "new",
-                                                       "Q": "unreleased", "DU": "new", "CB": "new", "IS": "new", "PM": "new", "SM": "new", "HB": "new"}
+                                                       "Q": "unreleased", "DU": "new", "CB": "new", "IS": "new", "PM": "new", "SM": "new", "HB": "new", "FS": "new"}
     assert rows["Z"].wanted and not rows["E"].wanted and "network down" in rows["F"].error
 
 
