@@ -14,14 +14,14 @@ def test_first_start_offers_the_whole_family(window, fam):
     from conftest import LETTERS, VERSIONS
     assert window.chosen() == LETTERS
     total = sum(len(fam.files[f"/PR7-{x}-Setup-{v}.exe"]) for x, v in zip(LETTERS, VERSIONS))
-    assert window.summary.text() == f"12 apps  ·  {total / 1e6:.1f} MB to download"
-    assert window.buttons["go"].text() == "INSTALL 12 APPS"
+    assert window.summary.text() == f"13 apps  ·  {total / 1e6:.1f} MB to download"
+    assert window.buttons["go"].text() == "INSTALL 13 APPS"
     window.widgets["M"].check.setChecked(False)
-    assert window.buttons["go"].text() == "INSTALL 11 APPS" and "M" not in window.chosen()
+    assert window.buttons["go"].text() == "INSTALL 12 APPS" and "M" not in window.chosen()
     window._button_none()
     assert not window.buttons["go"].isEnabled() and window.summary.text() == "Nothing ticked"
     window._button_all()
-    assert len(window.chosen()) == 12
+    assert len(window.chosen()) == 13
 
 
 def test_install_the_chosen_ones(window, fam):
@@ -31,7 +31,7 @@ def test_install_the_chosen_ones(window, fam):
     window.refresh()
     assert window.mode == "choose"
     assert not window.widgets["E"].check.isChecked() and not window.widgets["Q"].check.isEnabled()
-    for k in ["L", "F", "R", "P", "M", "DU", "CB", "IS"]:
+    for k in ["L", "F", "R", "P", "M", "DU", "CB", "IS", "PM"]:
         window.widgets[k].check.setChecked(False)
     window._button_go()                                   # Z and W
     assert [a[0].rsplit("/", 1)[-1].rsplit("\\", 1)[-1] for a in fam.ran] == ["PR7-Z-Setup-0.4.0.exe",
@@ -75,7 +75,7 @@ def test_manage_view_open_update_uninstall(window, fam):
     assert window.mode == "manage" and window.heading.text() == "YOUR PARAGON APPS"
     w = window.widgets
     assert (w["Z"].button.text(), w["E"].button.text(), w["W"].button.text()) == ("UPDATE", "OPEN", "INSTALL")
-    assert window.summary.text() == "1 update  ·  10 apps not installed"
+    assert window.summary.text() == "1 update  ·  11 apps not installed"
     assert visible(window, "go") and window.buttons["go"].text() == "UPDATE ALL"
     opened = []
     window.answers["launch"] = lambda name, args: opened.append(name) or True
@@ -127,7 +127,7 @@ def test_listing(fam, tmp_path):
     assert app.listing(str(out), fam.fetch, fam.reader) == 0
     got = {d["app"]: d for d in json.loads(out.read_text())}
     assert got["PR7-Z"]["state"] == "update" and got["PR7-Z"]["installed"] == "0.3.0" and got["PR7-Z"]["latest"] == "0.4.0"
-    assert len(got) == 12 and got["PR7-W"]["installed"] is None
+    assert len(got) == 13 and got["PR7-W"]["installed"] is None
 
 
 def test_install_and_uninstall_without_a_window(fam):
@@ -136,7 +136,7 @@ def test_install_and_uninstall_without_a_window(fam):
     fam.install("PR7-E", "1.1.0")
     assert app.headless("install", "all", fam.fetch, None, fam.runner, fam.reader, lines.append) == 0
     assert "PR7-M: no release yet" in lines and "PR7-E: up to date (1.1.0)" in lines and "PR7-Z: installed 0.4.0" in lines
-    assert len(fam.registry) == 11
+    assert len(fam.registry) == 12
     lines.clear()
     fam.failing.add("PR7-Q"); fam.release("PR7-Q", "0.2.0")
     assert app.headless("install", "Q", fam.fetch, None, fam.runner, fam.reader, lines.append) == 1

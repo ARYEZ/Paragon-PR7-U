@@ -59,6 +59,7 @@ APPS = [
     # Its index service task needs administrator permission once: a first install from PR7-U leaves it out (no UAC
     # prompt mid-batch); PR7-IS's window then offers INSTALL THE INDEX SERVICE.
     App("IS", "File search", "Everything", ("/MERGETASKS=!service",)),
+    App("PM", "Password manager", "KeePassXC"),
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 

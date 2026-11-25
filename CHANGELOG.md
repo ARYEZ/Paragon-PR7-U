@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- **PR7-PM** (password manager, works like KeePassXC) joins the family.
+
 ## 0.4.0
 
 - **PR7-IS** (instant file search, works like Everything) joins the family. A first install from PR7-U leaves out

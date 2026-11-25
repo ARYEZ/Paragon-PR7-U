@@ -19,6 +19,7 @@ own latest GitHub release, in the family look. Python and PySide6.
 | PR7-DU | Disk usage | WizTree |
 | PR7-CB | Clipboard history | Ditto |
 | PR7-IS | File search | Everything |
+| PR7-PM | Password manager | KeePassXC |
 
 ## How it works
 
