@@ -24,6 +24,7 @@ own latest GitHub release, in the family look. Python and PySide6.
 | PR7-HB | Video converter | HandBrake |
 | PR7-FS | Folder sync | FreeFileSync |
 | PR7-AR | Startup manager | Autoruns |
+| PR7-WM | File compare | WinMerge |
 
 ## How it works
 

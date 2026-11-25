@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.0
+
+- **PR7-WM**, file and folder compare (works like WinMerge), joins the list.
+
 ## 0.11.0
 
 - **PR7-AR**, the startup manager (works like Autoruns), joins the list.

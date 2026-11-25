@@ -64,6 +64,7 @@ APPS = [
     App("HB", "Video converter", "HandBrake"),
     App("FS", "Folder sync", "FreeFileSync"),
     App("AR", "Startup manager", "Autoruns"),
+    App("WM", "File compare", "WinMerge"),
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 

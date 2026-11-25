@@ -1,3 +1,3 @@
 """Paragon PR7-U: installs and updates the whole Paragon PR7 family."""
 
-__version__ = "0.11.0"
+__version__ = "0.12.0"
