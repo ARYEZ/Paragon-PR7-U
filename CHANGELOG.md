@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.0
+
+- Four more apps join the list: **PR7-HX** hex editor (works like HxD), **PR7-DB** SQLite browser (DB Browser for
+  SQLite), **PR7-UN** uninstaller (Revo Uninstaller) and **PR7-LN** launcher (Flow Launcher).
+
 ## 0.12.0
 
 - **PR7-WM**, file and folder compare (works like WinMerge), joins the list.

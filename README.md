@@ -25,6 +25,10 @@ own latest GitHub release, in the family look. Python and PySide6.
 | PR7-FS | Folder sync | FreeFileSync |
 | PR7-AR | Startup manager | Autoruns |
 | PR7-WM | File compare | WinMerge |
+| PR7-HX | Hex editor | HxD |
+| PR7-DB | SQLite browser | DB Browser for SQLite |
+| PR7-UN | Uninstaller | Revo Uninstaller |
+| PR7-LN | Launcher | Flow Launcher |
 
 ## How it works
 

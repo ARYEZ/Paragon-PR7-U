@@ -65,6 +65,10 @@ APPS = [
     App("FS", "Folder sync", "FreeFileSync"),
     App("AR", "Startup manager", "Autoruns"),
     App("WM", "File compare", "WinMerge"),
+    App("HX", "Hex editor", "HxD"),
+    App("DB", "SQLite browser", "DB Browser for SQLite"),
+    App("UN", "Uninstaller", "Revo Uninstaller"),
+    App("LN", "Launcher", "Flow Launcher"),
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 
