@@ -14,14 +14,14 @@ def test_first_start_offers_the_whole_family(window, fam):
     from conftest import LETTERS, VERSIONS
     assert window.chosen() == LETTERS
     total = sum(len(fam.files[f"/PR7-{x}-Setup-{v}.exe"]) for x, v in zip(LETTERS, VERSIONS))
-    assert window.summary.text() == f"14 apps  ·  {total / 1e6:.1f} MB to download"
-    assert window.buttons["go"].text() == "INSTALL 14 APPS"
+    assert window.summary.text() == f"15 apps  ·  {total / 1e6:.1f} MB to download"
+    assert window.buttons["go"].text() == "INSTALL 15 APPS"
     window.widgets["M"].check.setChecked(False)
-    assert window.buttons["go"].text() == "INSTALL 13 APPS" and "M" not in window.chosen()
+    assert window.buttons["go"].text() == "INSTALL 14 APPS" and "M" not in window.chosen()
     window._button_none()
     assert not window.buttons["go"].isEnabled() and window.summary.text() == "Nothing ticked"
     window._button_all()
-    assert len(window.chosen()) == 14
+    assert len(window.chosen()) == 15
 
 
 def test_install_the_chosen_ones(window, fam):
@@ -31,7 +31,7 @@ def test_install_the_chosen_ones(window, fam):
     window.refresh()
     assert window.mode == "choose"
     assert not window.widgets["E"].check.isChecked() and not window.widgets["Q"].check.isEnabled()
-    for k in ["L", "F", "R", "P", "M", "DU", "CB", "IS", "PM", "SM"]:
+    for k in ["L", "F", "R", "P", "M", "DU", "CB", "IS", "PM", "SM", "HB"]:
         window.widgets[k].check.setChecked(False)
     window._button_go()                                   # Z and W
     assert [a[0].rsplit("/", 1)[-1].rsplit("\\", 1)[-1] for a in fam.ran] == ["PR7-Z-Setup-0.4.0.exe",
@@ -75,7 +75,7 @@ def test_manage_view_open_update_uninstall(window, fam):
     assert window.mode == "manage" and window.heading.text() == "YOUR PARAGON APPS"
     w = window.widgets
     assert (w["Z"].button.text(), w["E"].button.text(), w["W"].button.text()) == ("UPDATE", "OPEN", "INSTALL")
-    assert window.summary.text() == "1 update  ·  12 apps not installed"
+    assert window.summary.text() == "1 update  ·  13 apps not installed"
     assert visible(window, "go") and window.buttons["go"].text() == "UPDATE AND INSTALL ALL"
     assert visible(window, "updates") and window.buttons["updates"].text() == "UPDATE ONLY"
     opened = []
@@ -128,7 +128,7 @@ def test_listing(fam, tmp_path):
     assert app.listing(str(out), fam.fetch, fam.reader) == 0
     got = {d["app"]: d for d in json.loads(out.read_text())}
     assert got["PR7-Z"]["state"] == "update" and got["PR7-Z"]["installed"] == "0.3.0" and got["PR7-Z"]["latest"] == "0.4.0"
-    assert len(got) == 14 and got["PR7-W"]["installed"] is None
+    assert len(got) == 15 and got["PR7-W"]["installed"] is None
 
 
 def test_install_and_uninstall_without_a_window(fam):
@@ -137,7 +137,7 @@ def test_install_and_uninstall_without_a_window(fam):
     fam.install("PR7-E", "1.1.0")
     assert app.headless("install", "all", fam.fetch, None, fam.runner, fam.reader, lines.append) == 0
     assert "PR7-M: no release yet" in lines and "PR7-E: up to date (1.1.0)" in lines and "PR7-Z: installed 0.4.0" in lines
-    assert len(fam.registry) == 13
+    assert len(fam.registry) == 14
     lines.clear()
     fam.failing.add("PR7-Q"); fam.release("PR7-Q", "0.2.0")
     assert app.headless("install", "Q", fam.fetch, None, fam.runner, fam.reader, lines.append) == 1
@@ -156,7 +156,7 @@ def test_install_and_update_everything_from_your_apps(window, fam):
     window._button_go()
     ran = [a[0].rsplit("\\", 1)[-1].rsplit("/", 1)[-1] for a in fam.ran]
     assert ran[0] == "PR7-Z-Setup-0.4.0.exe"                                   # the update first
-    assert len(ran) == 13 and not any(r.startswith("PR7-E-") for r in ran)    # then every missing app; E left alone
+    assert len(ran) == 14 and not any(r.startswith("PR7-E-") for r in ran)    # then every missing app; E left alone
     w_args = next(a for a in fam.ran if "PR7-W-Setup" in a[0])
     assert "/MERGETASKS=!replacenotepad" in w_args                              # first installs keep their switches
     assert all(fam.registry[family.APPS[f"PR7-{k}"]]["DisplayVersion"] for k in ("Z", "W", "SM"))

@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 os.environ["PARAGON_FAMILY_FILE"] = os.path.join(__import__("tempfile").mkdtemp(prefix="family-"), "finish")  # never the real choice
 os.environ.pop("PR7U_GITHUB_TOKEN", None)
-LETTERS = ["Z", "W", "L", "F", "E", "R", "P", "M", "Q", "DU", "CB", "IS", "PM", "SM"]
-VERSIONS = ["0.4.0", "0.3.0", "0.7.0", "0.5.0", "1.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0"]
+LETTERS = ["Z", "W", "L", "F", "E", "R", "P", "M", "Q", "DU", "CB", "IS", "PM", "SM", "HB"]
+VERSIONS = ["0.4.0", "0.3.0", "0.7.0", "0.5.0", "1.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0"]
 
 
 @pytest.fixture(scope="session")

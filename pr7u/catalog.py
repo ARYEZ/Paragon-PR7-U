@@ -61,6 +61,7 @@ APPS = [
     App("IS", "File search", "Everything", ("/MERGETASKS=!service",)),
     App("PM", "Password manager", "KeePassXC"),
     App("SM", "System monitor", "Process Explorer"),   # Replace Task Manager (admin) is unticked: no switch needed
+    App("HB", "Video converter", "HandBrake"),
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 

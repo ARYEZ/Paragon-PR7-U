@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+
+- **PR7-HB**, the video converter (works like HandBrake), joins the list: install, update and remove it with the rest of the family.
+
 ## 0.8.0
 
 - **One finish for the whole family.** Choosing OBSIDIAN or AURORA here switches every Paragon app, open ones included (within a couple of seconds), and every app starts in the family's choice.
