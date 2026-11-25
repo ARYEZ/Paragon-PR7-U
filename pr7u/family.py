@@ -1,6 +1,6 @@
 """The Paragon family's other apps on this computer (no Qt): found through their installers' uninstall entries
-(each AppId is permanent), else the default per-user folder; started with files or folders. PR7-U opens
-them, and its catalog takes their AppIds from here."""
+(each AppId is permanent), else the default per-user folder; started with files or folders. Used for the
+family's links between apps, and to offer PR7-U (the family installer) from Check for Updates."""
 
 from __future__ import annotations
 

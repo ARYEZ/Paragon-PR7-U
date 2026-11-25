@@ -24,7 +24,7 @@ family look. Windows 10/11 x64 is the target; it runs on Linux for tests. The ow
 - Installer `installer/pr7u.iss` (per user, AppId {12226380-56E6-4D77-8F5C-8052A0AE4183} permanent); the finish page runs
   `--choose`. CI installs it, `tools/verify_install.py installed` uses the installed PR7-U for real: --list, --install
   all (each app at its latest release), --uninstall all; then uninstalls PR7-U, `... uninstalled`.
-- Updates (PR7-U itself): `pr7u/updates.py` / `update_ui.py`, the family's files (keep them in step); `family.py`.
+- Updates (PR7-U itself): `pr7u/updates.py` / `update_ui.py`, the family's files (keep them in step); PR7-U's own update_ui never offers itself; `family.py`.
 
 ## The look (family rules)
 
