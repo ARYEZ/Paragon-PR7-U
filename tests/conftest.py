@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools"))
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
+os.environ["PARAGON_FAMILY_FILE"] = os.path.join(__import__("tempfile").mkdtemp(prefix="family-"), "finish")  # never the real choice
 os.environ.pop("PR7U_GITHUB_TOKEN", None)
 LETTERS = ["Z", "W", "L", "F", "E", "R", "P", "M", "Q", "DU", "CB", "IS", "PM", "SM"]
 VERSIONS = ["0.4.0", "0.3.0", "0.7.0", "0.5.0", "1.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0", "0.1.0"]
@@ -146,4 +147,12 @@ def window(qapp, clean_settings, fam):
     w.show()
     yield w
     w.running = False
+    # rows a view rebuild replaced wait for deleteLater: delete them now, while their window is still whole (a later
+    # test's event loop would otherwise delete them as Python cleans the window up: a segfault)
+    from PySide6.QtCore import QCoreApplication, QEvent
+    QCoreApplication.sendPostedEvents(None, QEvent.Type.DeferredDelete)
     w.close()
+    QCoreApplication.sendPostedEvents(None, QEvent.Type.DeferredDelete)
+    del w
+    import gc
+    gc.collect()        # now, on the main thread: not at a random later moment, maybe on a server thread (a segfault)

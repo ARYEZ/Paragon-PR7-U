@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0
+
+- **One finish for the whole family.** Choosing OBSIDIAN or AURORA here switches every Paragon app, open ones included (within a couple of seconds), and every app starts in the family's choice.
+- In AURORA, group titles and selected rows are dark and readable (they were white on the light finish).
+
 ## 0.7.0
 
 - **Install and update everything in one go.** Your Paragon apps has one button for whatever is waiting: UPDATE ALL

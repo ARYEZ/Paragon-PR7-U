@@ -16,6 +16,7 @@ from PySide6.QtGui import QDesktopServices, QFont, QPixmap
 from PySide6.QtWidgets import (QCheckBox, QFrame, QHBoxLayout, QLabel, QMainWindow, QMenu, QMessageBox,
                                QProgressBar, QPushButton, QScrollArea, QVBoxLayout, QWidget)
 
+from . import finish
 from . import __version__, catalog, family, releases, settings, theme, widgets
 from .releases import Row
 from .updates import UpdateError
@@ -452,6 +453,7 @@ class MainWindow(QMainWindow):
 
     def set_finish(self, name: str):
         theme.set_finish(name)
+        finish.set(theme.FINISH)                 # every family app follows (finish.py)
         settings.set("finish", name)
         self.restyle()
 

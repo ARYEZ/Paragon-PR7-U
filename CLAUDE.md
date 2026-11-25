@@ -27,6 +27,8 @@ family look. Windows 10/11 x64 is the target; it runs on Linux for tests. The ow
   all (each app at its latest release), --uninstall all; then uninstalls PR7-U, `... uninstalled`.
 - Updates (PR7-U itself): `pr7u/updates.py` / `update_ui.py`, the family's files (keep them in step); PR7-U's own update_ui never offers itself; `family.py`.
 
+- `pr7u/finish.py` (no Qt): the family's finish (OBSIDIAN / AURORA), one choice for every app: HKCU\Software\Paragon\Family "Finish" (a file elsewhere; PARAGON_FAMILY_FILE in tests, conftest). `finish.start` at start-up, `set_finish` saves it, app.py's 2 s timer `finish.follow`s another app's switch. The same file in every family app: keep them in step.
+
 ## The look (family rules)
 
 - Theme is PR7-Q's (OBSIDIAN + AURORA via `theme.set_finish`; the window's `stylesheet()` adds the gradient button
