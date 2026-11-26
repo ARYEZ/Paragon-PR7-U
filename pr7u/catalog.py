@@ -69,6 +69,9 @@ APPS = [
     App("DB", "SQLite browser", "DB Browser for SQLite"),
     App("UN", "Uninstaller", "Revo Uninstaller"),
     App("LN", "Launcher", "Flow Launcher"),
+    App("HW", "Hardware information", "HWiNFO / CPU-Z"),
+    App("BK", "Backups", "Duplicati"),
+    App("TM", "Terminal", "Windows Terminal / PuTTY"),
 ]
 BY_LETTER = {a.letter: a for a in APPS}
 

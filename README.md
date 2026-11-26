@@ -29,6 +29,9 @@ own latest GitHub release, in the family look. Python and PySide6.
 | PR7-DB | SQLite browser | DB Browser for SQLite |
 | PR7-UN | Uninstaller | Revo Uninstaller |
 | PR7-LN | Launcher | Flow Launcher |
+| PR7-HW | Hardware information | HWiNFO / CPU-Z |
+| PR7-BK | Backups | Duplicati |
+| PR7-TM | Terminal | Windows Terminal / PuTTY |
 
 ## How it works
 

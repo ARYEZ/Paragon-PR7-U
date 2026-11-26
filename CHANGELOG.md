@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.14.0
+
+- Three more apps join the list: **PR7-HW** hardware information (works like HWiNFO / CPU-Z), **PR7-BK** backups
+  (Duplicati) and **PR7-TM** terminal (Windows Terminal / PuTTY).
+
 ## 0.13.0
 
 - Four more apps join the list: **PR7-HX** hex editor (works like HxD), **PR7-DB** SQLite browser (DB Browser for
